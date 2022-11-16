@@ -1,6 +1,3 @@
-import Head from "next/head";
-import Link from "next/link";
-import styles from "../styles/Home.module.css";
 import { request } from "../lib/datocms";
 import { Image } from "react-datocms";
 
@@ -57,7 +54,7 @@ const StartPagePreview = (props) => {
   const { data } = props;
   return (
     <div>
-      <div class="w-full h-96 bg-cover bg-center flex justify-center items-center">
+      <div class="container flex flex-col-reverse md:flex-fow items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0">
         <Image data={data.mainImage.responsiveImage} />
       </div>
       <div class="flex flex-col justify-center items-center">
@@ -67,7 +64,7 @@ const StartPagePreview = (props) => {
         {/* <p class="mt-5 text-center text-lg text-white opacity-70"></p> */}
         <a
           class="mt-8 px-12 py-3 bg-gradient-to-r from-amber-500 to-red-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
-          href="#"
+          href="/product/products"
         >
           Get Started
         </a>
