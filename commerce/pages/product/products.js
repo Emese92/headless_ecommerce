@@ -45,7 +45,7 @@ export default function Products(props) {
   console.log(data);
   return (
     <div className="">
-      <div>
+      <div className="grid md:grid-cols-3 sm:grid-cols-2">
         {products.map((p) => (
           <ProductsPagePreview key={p.id} data={p} />
         ))}
@@ -57,15 +57,15 @@ export default function Products(props) {
 const ProductsPagePreview = (props) => {
   const { data } = props;
   return (
-    <div style={{ maxWidth: "400px", marginBottom: "50px" }}>
-      <Image data={data.mainImage} />
-      <h2>
+    <div className="flex-col items-center p-6 space-y-6 shadow-md overflow-hidden m-3">
+      <Image data={data.mainImage}  />
+      <div>
         <Link href={`/product/${data.slug}`}>
           <Image data={data.mainImage.responsiveImage} />
           <p>{data.name}</p>
         </Link>
-      </h2>
-      <div style={{ fontWeight: "bold" }}>{data.price}</div>
+        <p>{data.price} kr</p>
+      </div>
     </div>
   );
 };
