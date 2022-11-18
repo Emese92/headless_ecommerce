@@ -6,6 +6,7 @@ const PRODUCTS_QUERY = `
 query myQuery {
     allProducts(orderBy: _createdAt_ASC) {
       id
+      slug
       name
       price
       mainImage {
@@ -41,11 +42,9 @@ export async function getStaticProps() {
 export default function Products(props) {
   const { data } = props;
   const products = data.allProducts;
-  console.log(products);
-  console.log(data);
   return (
-    <div className="">
-      <div className="grid md:grid-cols-3 sm:grid-cols-2">
+    <div>
+      <div className="m-5 grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
         {products.map((p) => (
           <ProductsPagePreview key={p.id} data={p} />
         ))}
@@ -57,14 +56,15 @@ export default function Products(props) {
 const ProductsPagePreview = (props) => {
   const { data } = props;
   return (
-    <div className="flex-col items-center p-6 space-y-6 shadow-md overflow-hidden m-3">
-      <Image data={data.mainImage}  />
-      <div>
+    <div>
+      <div className="relative overflow-hidden bg-gray-100 rounded-md hover:scale-105">
         <Link href={`/product/${data.slug}`}>
           <Image data={data.mainImage.responsiveImage} />
-          <p>{data.name}</p>
+          <h2 className="pl-3 mt-2 text-lg ">{data.name}</h2>
         </Link>
-        <p>{data.price} kr</p>
+        <p className="pl-3 pb-2 text-lg font-semibold text-gray-500">
+          {data.price} kr
+        </p>
       </div>
     </div>
   );

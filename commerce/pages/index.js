@@ -40,9 +40,8 @@ export async function getStaticProps() {
 export default function Home(props) {
   const { data } = props;
   const home = data.startpage;
-  console.log(data);
   return (
-    <div className="">
+    <div>
       <div>
         <StartPagePreview key={home.id} data={home} />
       </div>
@@ -55,22 +54,22 @@ const StartPagePreview = (props) => {
   return (
     <div>
       <div>
-        <div class="w-full h-96 bg-cover bg-center flex justify-center items-center">
-          <Image data={data.mainImage.responsiveImage} />
+        <div className="relative h-screen w-screen">
+          <Image data={data.mainImage.responsiveImage} className="absolute inset-0 w-full h-full object-cover mix-blend-multiply filter brightness-50" />
         </div>
-        <div class="flex flex-col justify-center items-center">
-          <h1 class="text-center text-5xl text-white font-bold drop-shadow-lg">
+        <div className="space-y-6 absolute inset-0 flex flex-col justify-center items-center max-w-3xl mx-auto text-center">
+          <h1 className="font-extrabold text-white text-3xl sm:text-4xl md:text-5xl md:leading-snug">
             {data.title}
           </h1>
+          <div className="space-y-4 text-white md:text-lg lg:text-xl">
+            <StructuredText data={data.content.value}  />
+          </div>
           <a
-            class="mt-8 px-12 py-3 bg-gradient-to-r from-amber-500 to-red-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
+            className="mt-8 px-12 py-3 bg-gradient-to-r from-amber-500 to-red-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
             href="/product/products"
           >
             Get Started
           </a>
-        </div>
-        <div class="container p-10">
-          <StructuredText data={data.content.value} />
         </div>
       </div>
     </div>
