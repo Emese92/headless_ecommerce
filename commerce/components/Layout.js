@@ -28,7 +28,7 @@ export default function Layout({ title, children }) {
               >
                 Products
               </Link>
-              <Link href="#" className="hover:underline mr-6 text-xl">
+              <Link href="/cart" className="hover:underline mr-6 text-xl">
                 Cart
                 {cart.cartItems.length > 0 && (
                   <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">

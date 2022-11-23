@@ -9,12 +9,14 @@ export default function ProductDetail(props) {
   const { state, dispatch } = useContext(Store);
   const { productData } = props;
 
+
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find(
       (x) => x.slug === productData.slug
     );
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    console.log(quantity)
+    console.log(quantity);
+    console.log(productData);
     dispatch({
       type: "CART_ADD_ITEM",
       payload: { ...productData, quantity },
@@ -64,12 +66,12 @@ const PATHS_QUERY = `
   }
   `;
 export const getStaticPaths = async (context) => {
-  const nameQuery = await request({
+  const slugQuery = await request({
     query: PATHS_QUERY,
   });
 
   let paths = [];
-  nameQuery.allProducts.map((p) => paths.push(`/product/${p.slug}`));
+  slugQuery.allProducts.map((p) => paths.push(`/product/${p.slug}`));
 
   return {
     paths,
