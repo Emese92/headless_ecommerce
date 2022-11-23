@@ -65,7 +65,7 @@ const PATHS_QUERY = `
     }
   }
   `;
-export const getStaticPaths = async (context) => {
+export const getStaticPaths = async () => {
   const slugQuery = await request({
     query: PATHS_QUERY,
   });
