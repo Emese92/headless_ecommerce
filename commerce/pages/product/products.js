@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { request } from "./../../lib/datocms";
 import { Image } from "react-datocms";
+import Layout from "../../components/Layout";
 
 const PRODUCTS_QUERY = `
 query myQuery {
@@ -43,12 +44,14 @@ export default function Products(props) {
   const { data } = props;
   const products = data.allProducts;
   return (
-    <div>
-      <div className="m-5 grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
+    <div className="app">
+      <Layout>
+      <div className="m-5 grid gap-10 mt-10 lg:gap-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         {products.map((p) => (
           <ProductsPagePreview key={p.id} data={p} />
         ))}
       </div>
+      </Layout>
     </div>
   );
 }
@@ -60,7 +63,7 @@ const ProductsPagePreview = (props) => {
       <div className="relative overflow-hidden bg-gray-100 rounded-md hover:scale-105">
         <Link href={`/product/${data.slug}`}>
           <Image data={data.mainImage.responsiveImage} />
-          <h2 className="pl-3 mt-2 text-lg ">{data.name}</h2>
+          <h2 className="pl-3 mt-2 text-lg">{data.name}</h2>
         </Link>
         <p className="pl-3 pb-2 text-lg font-semibold text-gray-500">
           {data.price} kr
